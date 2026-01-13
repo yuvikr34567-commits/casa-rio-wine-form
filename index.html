@@ -131,15 +131,37 @@
         
         .payment-section {
             margin-top: 30px;
+            background-color: #fffacd;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         
         .payment-title {
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 18px;
         }
         
-        .payment-details {
-            line-height: 1.8;
+        .payment-row {
+            display: flex;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .payment-label {
+            font-weight: bold;
+            width: 180px;
+        }
+        
+        .payment-value {
+            flex: 1;
+        }
+        
+        .payment-note {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
         }
         
         .contact-info {
@@ -188,23 +210,23 @@
             </div>
             <div class="form-row">
                 <div class="form-label">Name:</div>
-                <input type="text" class="form-input" id="name" value="CASA RIO">
+                <input type="text" class="form-input" id="name" placeholder="Enter name">
             </div>
             <div class="form-row">
                 <div class="form-label">Contact:</div>
-                <input type="text" class="form-input" id="contact" value="Tim Halley">
+                <input type="text" class="form-input" id="contact" placeholder="Enter contact">
             </div>
             <div class="form-row">
                 <div class="form-label">Whatsapp:</div>
-                <input type="text" class="form-input" id="whatsapp" value="(1) 519-841-1433">
+                <input type="text" class="form-input" id="whatsapp" placeholder="Enter WhatsApp number">
             </div>
             <div class="form-row">
                 <div class="form-label">Delivery Address:</div>
-                <input type="text" class="form-input" id="address" value="Cocoies">
+                <input type="text" class="form-input" id="address" placeholder="Enter delivery address">
             </div>
             <div class="form-row">
                 <div class="form-label">Delivery Instructions:</div>
-                <input type="text" class="form-input" id="instructions">
+                <input type="text" class="form-input" id="instructions" placeholder="Enter delivery instructions">
             </div>
         </div>
         
@@ -281,17 +303,43 @@
         </div>
         
         <div class="payment-section">
-            <div class="payment-title">Payment Instructions:</div>
-            <div class="payment-details">
-                Distribuidora E Importador Sabores Argentinos S.A. CTA #909798654<br>
-                BAC account IBAN Colones CR25 0102 0000 9097 9865 47
+            <div class="payment-title">Payment Options</div>
+            
+            <div class="payment-row">
+                <div class="payment-label">Company:</div>
+                <div class="payment-value">Distribuidora E Importador Sabores Argentinos S.A. CTA #909798654</div>
             </div>
-            <div class="contact-info" style="margin-top: 20px;">
-                Please include our email on the transfer: MoutonNoirWine@gmail.com
+            
+            <div class="payment-row">
+                <div class="payment-label">SINPE:</div>
+                <div class="payment-value">8365-8812</div>
             </div>
-            <div class="contact-info">
-                Wine rep: Cindy Lamb +1-917-328-4445 / +506-8792-4130
+            
+            <div class="payment-row">
+                <div class="payment-label">Zelle:</div>
+                <div class="payment-value">917-328-4445</div>
             </div>
+            
+            <div class="payment-row">
+                <div class="payment-label">USD IBAN (Scotia):</div>
+                <div class="payment-value">CR15 0123 0002 5010 2449 81</div>
+            </div>
+            
+            <div class="payment-row">
+                <div class="payment-label">CRC IBAN (BCR):</div>
+                <div class="payment-value">CR25 0102 0000 9097 9865 47</div>
+            </div>
+            
+            <div class="payment-note">
+                Please add our email to bank transfers: MoutonNoirWine@gmail.com
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            Wine Rep: Cindy Lamb
+        </div>
+        <div class="contact-info">
+            📞 +1-917-328-4445 / +506-8792-4130
         </div>
         
         <div class="thank-you">Thank you!</div>
