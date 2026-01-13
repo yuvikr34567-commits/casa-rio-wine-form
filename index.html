@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Rio Wine Order Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 48px;
+            color: #333;
+        }
+        
+        .logo-subtext {
+            color: #b8860b;
+            font-size: 18px;
+            letter-spacing: 3px;
+            margin-top: -10px;
+        }
+        
+        .sheep-icon {
+            font-size: 60px;
+        }
+        
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .customer-details {
+            margin: 30px 0;
+        }
+        
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .form-label {
+            width: 200px;
+            font-weight: bold;
+            padding: 8px;
+        }
+        
+        .form-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #333;
+            font-size: 14px;
+        }
+        
+        .date-input {
+            background-color: #ffff00;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .wine-input {
+            width: 100%;
+            border: none;
+            padding: 4px;
+            font-size: 14px;
+        }
+        
+        .qty-input {
+            width: 60px;
+            text-align: center;
+        }
+        
+        .total-row {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .total-input {
+            width: 100px;
+            text-align: right;
+            border: 1px solid #333;
+            padding: 5px;
+            font-weight: bold;
+        }
+        
+        .payment-section {
+            margin-top: 30px;
+        }
+        
+        .payment-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .payment-details {
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .thank-you {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div>
+                    <div style="text-align: left;">
+                        <div style="color: #b8860b; font-size: 24px;">🍷</div>
+                        <div class="logo-text">Mouton Noir</div>
+                        <div class="logo-subtext">WINE GROUP</div>
+                    </div>
+                </div>
+                <div class="sheep-icon">🐑</div>
+            </div>
+            <div class="form-title">CASA RIO WINE ORDER FORM</div>
+        </div>
+        
+        <div class="customer-details">
+            <div class="form-row">
+                <div class="form-label">Date:</div>
+                <input type="text" class="form-input date-input" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-row">
+                <div class="form-label">Name:</div>
+                <input type="text" class="form-input" id="name" value="CASA RIO">
+            </div>
+            <div class="form-row">
+                <div class="form-label">Contact:</div>
+                <input type="text" class="form-input" id="contact" value="Tim Halley">
+            </div>
+            <div class="form-row">
+                <div class="form-label">Whatsapp:</div>
+                <input type="text" class="form-input" id="whatsapp" value="(1) 519-841-1433">
+            </div>
+            <div class="form-row">
+                <div class="form-label">Delivery Address:</div>
+                <input type="text" class="form-input" id="address" value="Cocoies">
+            </div>
+            <div class="form-row">
+                <div class="form-label">Delivery Instructions:</div>
+                <input type="text" class="form-input" id="instructions">
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Wine</th>
+                    <th style="width: 20%;">Unit Price</th>
+                    <th style="width: 15%;">Qty</th>
+                    <th style="width: 25%;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="wineTable">
+                <tr>
+                    <td><input type="text" class="wine-input" value="Mas Fi Salat Cava"></td>
+                    <td><input type="text" class="wine-input" value="CRC 6,970"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="La Playa Sauvignon Blanc"></td>
+                    <td><input type="text" class="wine-input" value="CRC 5,270"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="Callia Pinot Grigio"></td>
+                    <td><input type="text" class="wine-input" value="CRC 6,215"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="La Playa Merlot"></td>
+                    <td><input type="text" class="wine-input" value="CRC 5,400"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="Rayun Chardonnay"></td>
+                    <td><input type="text" class="wine-input" value="CRC 5,085"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="Rayun Merlot"></td>
+                    <td><input type="text" class="wine-input" value="CRC 5,085"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="William Cole Pinot Noir"></td>
+                    <td><input type="text" class="wine-input" value="CRC 7,055"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="Odjfell Cabernet Sauvignon"></td>
+                    <td><input type="text" class="wine-input" value="CRC 7,905"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="wine-input" value="Portillo Malbec Orgánico"></td>
+                    <td><input type="text" class="wine-input" value="CRC 6,215"></td>
+                    <td><input type="number" class="wine-input qty-input" value="0" onchange="calculateTotal()"></td>
+                    <td><input type="text" class="wine-input" value="CRC 0" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total-row">
+            <span style="margin-right: 20px;">TOTAL</span>
+            <input type="text" class="total-input" id="grandTotal" value="0" readonly>
+        </div>
+        
+        <div class="payment-section">
+            <div class="payment-title">Payment Instructions:</div>
+            <div class="payment-details">
+                Distribuidora E Importador Sabores Argentinos S.A. CTA #909798654<br>
+                BAC account IBAN Colones CR25 0102 0000 9097 9865 47
+            </div>
+            <div class="contact-info" style="margin-top: 20px;">
+                Please include our email on the transfer: MoutonNoirWine@gmail.com
+            </div>
+            <div class="contact-info">
+                Wine rep: Cindy Lamb +1-917-328-4445 / +506-8792-4130
+            </div>
+        </div>
+        
+        <div class="thank-you">Thank you!</div>
+    </div>
+    
+    <script>
+        // Set today's date by default
+        document.getElementById('date').value = new Date().toLocaleDateString();
+        
+        function calculateTotal() {
+            const rows = document.querySelectorAll('#wineTable tr');
+            let grandTotal = 0;
+            
+            rows.forEach(row => {
+                const priceInput = row.cells[1].querySelector('input');
+                const qtyInput = row.cells[2].querySelector('input');
+                const subtotalInput = row.cells[3].querySelector('input');
+                
+                const priceText = priceInput.value.replace(/[^0-9]/g, '');
+                const price = parseInt(priceText) || 0;
+                const qty = parseInt(qtyInput.value) || 0;
+                const subtotal = price * qty;
+                
+                subtotalInput.value = 'CRC ' + subtotal.toLocaleString();
+                grandTotal += subtotal;
+            });
+            
+            document.getElementById('grandTotal').value = grandTotal.toLocaleString();
+        }
+        
+        // Initialize calculations
+        calculateTotal();
+    </script>
+</body>
+</html>
