@@ -311,7 +311,7 @@
         <div class="location-info">
             <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/6acccab2-3e41-44d6-86bc-b0d17ade17ec/2026-01-18T19-10-03-793Z-b05871e3-chat-image-1768763403774-1.jpg" alt="Casa Rio" class="casa-logo-small">
             <p><strong>Casa Rio</strong></p>
-            <p class="date-fixed"><strong>Date:</strong> <input type="date" id="orderDate" style="display: inline-block; width: auto; padding: 5px; border: 2px solid #8b7355; border-radius: 5px;" required></p>
+            <p class="date-fixed"><strong>Date:</strong> <input type="text" id="orderDate" placeholder="dd-mm-yyyy" style="display: inline-block; width: 150px; padding: 5px; border: 2px solid #8b7355; border-radius: 5px;" required></p>
         </div>
         
         <form id="orderForm">
@@ -465,6 +465,24 @@
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         
+        // Validate and format date input
+        function validateDate(input) {
+            let value = input.replace(/[^\d]/g, '');
+            
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '-' + value.slice(2);
+            }
+            if (value.length >= 5) {
+                value = value.slice(0, 5) + '-' + value.slice(5, 9);
+            }
+            
+            return value;
+        }
+        
+        document.getElementById('orderDate').addEventListener('input', function(e) {
+            e.target.value = validateDate(e.target.value);
+        });
+        
         // Calculate totals
         function calculateTotals() {
             let subtotal = 0;
@@ -498,8 +516,8 @@
             
             const orderDate = document.getElementById('orderDate').value;
             
-            if (!orderDate) {
-                alert('Please select a date.');
+            if (!orderDate || orderDate.length < 10) {
+                alert('Please enter a valid date in dd-mm-yyyy format.');
                 return;
             }
             
